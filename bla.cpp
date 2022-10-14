@@ -1,4 +1,4 @@
 
 void bla(Platform &platform) {
-  platform.log("test from bla");
+  platform.log("test from");
 }
