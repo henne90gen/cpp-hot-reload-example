@@ -14,11 +14,9 @@ find_package(OpenGL REQUIRED)
 
 add_library(glad SHARED glad/src/glad.c)
 target_include_directories(glad PUBLIC glad/include)
-if (WIN32)
-    target_compile_definitions(glad PRIVATE GLAD_GLAPI_EXPORT GLAD_GLAPI_EXPORT_BUILD)
-endif ()
+target_compile_definitions(glad PRIVATE GLAD_GLAPI_EXPORT GLAD_GLAPI_EXPORT_BUILD)
 
-add_library(test_library SHARED test_library.cpp)
+add_library(test_library SHARED test_library.cpp bla.cpp)
 set_property(TARGET test_library PROPERTY CXX_STANDARD 20)
 set_target_properties(test_library
         PROPERTIES
@@ -44,6 +42,4 @@ add_executable(test_executable test_executable.cpp)
 target_link_libraries(test_executable glfw OpenGL::GL glad)
 set_property(TARGET test_executable PROPERTY CXX_STANDARD 20)
 add_dependencies(test_executable test_library)
-if (WIN32)
-    target_compile_definitions(test_executable PRIVATE GLAD_GLAPI_EXPORT)
-endif ()
+target_compile_definitions(test_executable PRIVATE GLAD_GLAPI_EXPORT)

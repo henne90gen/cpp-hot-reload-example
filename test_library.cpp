@@ -2,13 +2,15 @@
 
 #include <glad/glad.h>
 
-#include "bla.cpp"
+#include "bla.h"
 
-extern "C"
 #if WIN32
-    __declspec(dllexport)
+#define LIBRARY_API extern "C" __declspec(dllexport)
+#else
+#define LIBRARY_API extern "C"
 #endif
-        void update(Platform &platform) {
+
+LIBRARY_API void update(Platform &platform) {
   glClearColor(1.0F, 0.0F, 1.0F, 1.0F);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
